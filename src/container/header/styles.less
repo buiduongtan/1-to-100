@@ -1,0 +1,172 @@
+@import '/src/utils/constant.less';
+
+.container {
+  width: 100%;
+  background-color: @headerBlack;
+  color: @headerWhite;
+
+  a {
+    color: @headerWhite;
+    text-decoration: none;
+  }
+
+  > div:first-child {
+    max-width: @tabletSmall;
+    margin: auto;
+  }
+}
+
+.content {
+  position: relative;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.logo {
+  width: 100px;
+  height: 54px;
+  background-image: url(../../../public/assets/img/logo.png);
+  background-size: cover;
+  outline: none;
+}
+
+.icon {
+  cursor: pointer;
+  @size: 20px;
+  width: @size;
+  height: @size;
+  font-size: @size;
+  margin: 8px;
+}
+
+.menu {
+  width: 100%;
+  display: block;
+}
+
+.short-menu {
+  height: 50px;
+  width: 55px;
+  float: left;
+  margin-right: 20px;
+  cursor: pointer;
+  display: none;
+
+  // Helpful for hiding menu bar when click outside
+  &-cover {
+    position: fixed;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+  }
+}
+
+.drop-down {
+  position: absolute;
+  z-index: 1;
+  top: 45px;
+  left: 0;
+  background-color: @deepBlue;
+  width: 100%;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.2s ease-out;
+
+  &-show {
+    top: 50px;
+    visibility: visible;
+    opacity: 1;
+    transition: all 0.2s ease-in;
+  }
+}
+
+.tab-menu {
+  box-sizing: border-box;
+  padding: 20px;
+  position: relative;
+  border: 6px solid transparent;
+  padding-left: 8px;
+  font-weight: 700;
+
+  &:after {
+    content: '▼';
+    font-size: 10px;
+    padding-left: 5px;
+    padding-top: 2px;
+    position: absolute;
+    text-align: center;
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    width: 0px;
+    height: 100%;
+    border: 6px solid transparent;
+    top: -6px;
+    left: 50%;
+  }
+
+  &:hover {
+    &:before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 6px solid transparent;
+      border-top: 6px solid @redBrick;
+      left: -6px;
+      top: -6px;
+      transition: all 250ms ease;
+    }
+    color: @redBrick;
+  }
+}
+
+.active-tab {
+  color: @redBrick;
+  border-top: 6px solid @redBrick;
+  outline: none;
+}
+
+/** RESPONSIVE STYLE */
+.custom-responsive(
+  @sizeCustom900: {
+    .search-bar {
+      position: absolute;
+      right: 0px;
+      height: 100%;
+  
+      background-color: @headerBlack;
+      background: linear-gradient(to right, @deepBlue, @headerBlack);
+      box-shadow: -5px -1px 1px 0 @deepBlue;
+    }
+  }
+);
+
+.responsive(
+  @sizeTabletSmall: {
+    .content{
+      padding: 0 20px;
+    }
+  },
+  @sizeMobile: {
+    .menu {
+      display: none;
+    }
+    .short-menu {
+      display: block;
+    }
+    .logo {
+      width: 75px;
+      height: 40.5px;
+    }
+  },
+  @sizeMobileMediumMinus1: {
+    .sns {
+      display: none;
+    }
+  }
+);

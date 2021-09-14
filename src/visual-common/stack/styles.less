@@ -1,0 +1,82 @@
+@import '/src/utils/constant.less';
+
+.display-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.flex {
+  &-row {
+    .display-flex();
+    flex-flow: row wrap;
+  }
+
+  &-row-nowrap {
+    .display-flex();
+    flex-flow: row nowrap;
+  }
+
+  &-column {
+    .display-flex();
+    flex-flow: column wrap;
+  }
+
+  &-column-nowrap {
+    .display-flex();
+    flex-flow: column nowrap;
+  }
+}
+
+.justify {
+  &-start {
+    justify-content: flex-start;
+  }
+  &-end {
+    justify-content: flex-end;
+  }
+  &-center {
+    justify-content: center;
+  }
+  &-space-between {
+    justify-content: space-between;
+  }
+  &-space-evenly {
+    justify-content: space-evenly;
+  }
+  &-stretch {
+    justify-items: stretch;
+  }
+}
+
+.align {
+  &-center {
+    align-items: center;
+  }
+  &-start {
+    align-items: flex-start;
+  }
+  &-end {
+    align-items: flex-end;
+  }
+  &-stretch {
+    align-items: stretch;
+  }
+}
+
+.floating {
+  position: fixed;
+  z-index: 10;
+  width: unset;
+  height: unset;
+
+  &-right-bottom {
+    right: 0;
+    bottom: 0;
+  }
+}
+
+.full-width {
+  width: 100%;
+}

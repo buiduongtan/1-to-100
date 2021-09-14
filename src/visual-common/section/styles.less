@@ -1,0 +1,40 @@
+@import '/src/utils/constant.less';
+
+.container {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  background-color: @backgroundHome;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 50px 20px 100px 20px;
+}
+
+.content {
+  width: 100%;
+  background-color: white;
+  max-width: @tabletSmall;
+  padding: 20px;
+}
+
+.left {
+  flex: 2;
+}
+
+.right {
+  flex: 1;
+}
+
+/** RESPONSIVE STYLE */
+.responsive(
+  @sizeTabletXSmallMinus1:{
+    .container {
+      padding: 20px;
+    }
+  },
+  @sizeMobile: {
+    .container {
+      padding: 0;
+    }
+  }
+);

@@ -1,0 +1,33 @@
+@import '/src/utils/constant.less';
+
+.search {
+  width: 100%;
+  height: 100%;
+  &-icon {
+    cursor: pointer;
+    padding: 10px;
+  }
+  &-input {
+    box-sizing: border-box;
+    padding: 10px 0;
+    margin-right: 20px;
+    border: 1px solid @fireBrick;
+    border-radius: 15px;
+    outline: none;
+    font-size: 16px;
+    color: @headerWhite;
+    background-color: @headerBlack;
+
+    &-hide {
+      visibility: hidden;
+      width: 0;
+      transition: all 0.3s;
+    }
+    &-show {
+      padding: 10px 10px 10px;
+      visibility: visible;
+      width: 260px;
+      transition: all 0.3s;
+    }
+  }
+}

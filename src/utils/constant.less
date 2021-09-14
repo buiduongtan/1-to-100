@@ -1,0 +1,173 @@
+@deepBlue: #001a33;
+@deeperBlue: #000019;
+@headerBlack: #000d19;
+@footerBlack: #0a0202;
+@background: #12102b;
+@newsBlack: #292f38;
+@headerWhite: #fafafa;
+@bluePurple: #b0ace0;
+@fireBrick: #bf1313;
+@redBrick: #d32f2f;
+@brightRed: #ff4646;
+@lightGray: #dddddd;
+@veryLightGray: #d0d0dd;
+@shadow: #ddd9;
+@backgroundHome: #ededed;
+
+// Condition >1440 OK
+// Condition >1336 OK
+// No. Screen width order by most popular:
+
+// DESKTOP
+// 5	 2560×1440	25,954(5.73%)
+@desktop2K: 2560px;
+
+// 1	 1920×1080	88,378(19.53%)
+@desktopFullHD: 1920px;
+
+// 6	 1680×1050	20,068(4.43%)
+@desktopNormal: 1680px;
+
+// 10	 1600×900	  10,193(2.25%)
+@desktopMidHigh: 1600px;
+
+// 4	 1536×864	  32,872(7.26%)
+@desktopMidNormal: 1536px;
+
+// 3	 1440×900	  43,687(9.65%)
+@desktopMidSmall: 1440px;
+
+// TABLET
+// 2	 1366×768	  67,912(15.01%)
+@tabletLarge: 1366px;
+
+// 7	 1280×720	  15,138(3.34%)
+// 8	 1280×800	  14,007(3.09%)
+@tablet: 1280px;
+
+// NA  1024x1366
+@tabletSmall: 1024px;
+
+// NA  768x1024
+@tabletXSmall: 768px;
+
+// MOBILE
+// NA
+@mobile: 667px;
+// NA
+@mobileMedium: 414px;
+// 9	 360×640	  11,085(2.45%)
+@mobileSmall: 360px;
+
+// Iphone 5se 320x568
+// iphone 6/7/8 375x667
+// iphone 6/7/8 plus 414x 736
+// iphone x 375x812
+
+// Custom size
+@custom950: 950px;
+@custom900: 900px;
+
+/**
+ * @space        gap between each component
+ * @marginTop    
+ * @marginBottom
+ * @numberOfComponent
+ * @ratio        ratio of first (@numberOfComponent - 1) comps againse @numberOfComponent
+ *
+ * Example:
+ *   for 2, first (1/2) each 1/2 /1, last (1 - (1/2)
+ *   for 2, first 0.75 each 0.75 /1, last (1 - (1/2))
+ *   for 3, 2 firsts (2/3) each 2/3/2, last (1 - (2/3))
+ *   for 3, 2 firsts 0.75 each 0.75/2, last (1 - 0.75)
+ *   for 4, 3 firsts (3/4) each 3/4/3, last (1 - (3/4))
+ *   for 4, 3 fiirts 0.75 each 0.75/3, last (1 - 0.75)
+ */
+.stackComponent(@space: 0px, @marginTop: 0px, @marginBottom: 0px, @numberOfComponent: 2, @ratio: (@numberOfComponent - 1)/@numberOfComponent) {
+  @numberOfSpace: @numberOfComponent - 1;
+  @calcWidth: if(
+    (@ratio > 0),
+    calc(
+      100% * @ratio / (@numberOfComponent - 1) - @space * @numberOfSpace /
+        @numberOfComponent
+    ),
+    100%
+  );
+  @calcWidth1: if(
+    (@ratio > 0),
+    calc(100% * (1 - @ratio) - @space * @numberOfSpace / @numberOfComponent),
+    100%
+  );
+
+  // Example
+  // How: 3 block + 2 space
+  // each blockSpace = 1 block + 2/3space
+  flex-basis: @calcWidth;
+  margin: @marginTop 0px @marginBottom 0px;
+
+  &-last-line {
+    flex-basis: @calcWidth1;
+    margin-top: @marginTop;
+    margin-bottom: @marginBottom;
+  }
+}
+
+/** RESPONSIVE STYLE */
+.responsive(
+  @sizeTabletLarge: {},
+  @sizeTabletSmall: {},
+  @sizeTabletSmallMinus1: {},
+  @sizeTabletXSmallMinus1: {},
+  @sizeMobile: {},
+  @sizeMobileMediumMinus1: {}
+) {
+  @media screen and (max-width: calc(@tabletLarge)) {
+    @sizeTabletLarge();
+  }
+  @media screen and (max-width: calc(@tabletSmall)) {
+    @sizeTabletSmall();
+  }
+  @media screen and (max-width: calc(@tabletSmall - 1px)) {
+    @sizeTabletSmallMinus1();
+  }
+  @media screen and (max-width: calc(@tabletXSmall - 1px)) {
+    @sizeTabletXSmallMinus1();
+  }
+  @media screen and (max-width: @mobile) {
+    @sizeMobile();
+  }
+  @media screen and (max-width: @mobileMedium - 1px) {
+    @sizeMobileMediumMinus1();
+  }
+}
+
+.responsive1(
+  @sizeTabletLarge: {},
+  @sizeTabletSmall: {},
+  @sizeTabletSmallMinus1: {},
+  @sizeTabletXSmallMinus1: {},
+  @sizeMobile: {},
+  @sizeMobileMediumMinus1: {},
+  @orientation
+) {
+  .responsive(
+    @sizeTabletLarge,
+    @sizeTabletSmall,
+    @sizeTabletSmallMinus1,
+    @sizeTabletXSmallMinus1,
+    @sizeMobile,
+    @sizeMobileMediumMinus1
+  );
+  @media screen and (max-width: @mobileMedium - 1px) and(orientation: @orientation) {
+    @sizeMobileMediumMinus1();
+  }
+}
+
+.custom-responsive(@sizeCustom950: {}, @sizeCustom900: {}) {
+  @media screen and (max-width: @custom950) {
+    @sizeCustom950();
+  }
+  @media screen and (max-width: @custom900) {
+    @sizeCustom900();
+  }
+}

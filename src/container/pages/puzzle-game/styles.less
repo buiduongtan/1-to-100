@@ -1,0 +1,71 @@
+@import '/src/utils/constant.less';
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.header {
+  width: 100%;
+  min-height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.action-button {
+  width: 250px;
+  height: fit-content;
+  background-color: yellowgreen;
+  outline: none;
+  border-radius: 4px;
+}
+
+.twoColumn {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+
+  & * {
+    flex: 1;
+  }
+}
+
+.table {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.button {
+  flex: 1 1 calc(10% - 20px);
+  margin: 10px;
+  min-height: 50px;
+  font-size: 20px;
+
+  padding: 0;
+  border: 1px solid gray;
+  border-radius: 4px;
+  background-color: white;
+  outline: none;
+
+  &-selected {
+    background-color: yellowgreen;
+    color: gray;
+    border: 1px solid lightgray;
+  }
+
+  &-timeout {
+    background-color: darkgray;
+  }
+
+  @media screen and (max-width: 414px) {
+    flex: 1 1 calc(10% - 5px);
+    margin: 2px;
+    min-height: 37px;
+    font-size: 14px;
+  }
+}
